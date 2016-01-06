@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Pay check
+PROJECTNAME=Mil_budget
 
 # Active Configuration
 DEFAULTCONF=Debug
