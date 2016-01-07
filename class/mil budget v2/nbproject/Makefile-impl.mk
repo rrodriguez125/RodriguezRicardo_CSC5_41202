@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=bank robbery
+PROJECTNAME=mil budget v3
 
 # Active Configuration
 DEFAULTCONF=Debug
