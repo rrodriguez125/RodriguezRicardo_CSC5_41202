@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Jackpot
+PROJECTNAME=pass fail
 
 # Active Configuration
 DEFAULTCONF=Debug
