@@ -40,9 +40,9 @@ int main(int argc, char** argv) {
     cout<<"Type 5 to Display Problem Gaddis 8thEd Chap5 Prob12"<<endl;
     cout<<"Type 6 to Display Savitch 9thEd Chap3 PracticeProb1"<<endl;
     cout<<"Type 7 to Display Problem Savitch 9thEd Chap3 ProjectProb 2"<<endl;
-    cout<<"Type 8 to Display Problem 8"<<endl;
-    cout<<"Type 9 to Display Problem 9"<<endl;
-    cout<<"Type 10 to Display Problem 10"<<endl;
+    cout<<"Type 8 to Display Problem Savitch 9thEd Chap3 ProjectProb3"<<endl;
+    cout<<"Type 9 to Display Problem Savitch 9thEd Chap3 Prob"<<endl;
+    cout<<"Type 10 to Display Savitch 9thEd Chap3 Prob"<<endl;
     cout<<"Type anything else to exit"<<endl<<endl;
     cin>>nSoltn;
    
@@ -333,38 +333,611 @@ int main(int argc, char** argv) {
                 cout<<endl<<"Do you want to repeat the program?"<<endl;
                 cout<<"Enter Y or N"<<endl;
                 cin>>questn;
-            }while(toupper(questn)=='Y');   
-            cout<<endl;
-            cout<<"----------------------------------"<<endl;
+                }while(toupper(questn)=='Y');   
+                cout<<endl;
+                cout<<"----------------------------------"<<endl;
         
              
                 break;
                 }case 8:{
                 cout<<endl;
                 cout<<"----------------------------------"<<endl;
-                cout<<"Solution to Savitch 9thEd Chap3 PracticeProb 6"<<endl;
-                cout<<"Buoyancy Force"<<endl<<endl;
-                    
+                cout<<endl<<"Solution to Savitch 9thEd Chap3 ProjectProb3"<<endl;
+                cout<<"Roman Numberal Conversion"<<endl<<endl;
+                //Declare and initialize variables
+                unsigned short number=rand()%2001+1000;//[1000,3000]
+                unsigned char n1000,n100,n10,n1;      //number of 10^x
+                cout<<"The number to convert = "<<number<<endl;
+
+                //caclulate the number of 1000,100,10,1
+                n1000=(number-number%1000)/1000; //number of 1000s
+                number=(number-n1000*1000);     //subtract off 1000s
+                n100=(number-number%100)/100;  //number of 100s
+                number=(number-n100*100);     //subtract off 100s
+                n10=(number-number%10)/10;   //number of 10s
+                number=(number-n10*10);     //subtract off 10s
+                n1=(number-number%1)/1;    //number of 1000s
+
+
+                //output the number and its components
+
+                cout<<"The number of 1000's = "<<static_cast<int>(n1000)<<endl;
+                cout<<"The number of 100's = "<<static_cast<int>(n100)<<endl;
+                cout<<"The number of 10's = "<<static_cast<int>(n10)<<endl;
+                cout<<"The number of 1's = "<<static_cast<int>(n1)<<endl;
+
+                //Input Data
+
+
+
+                //calculate or map inputs to outputs
+
+
+
+                //Output the results
+                cout<<"The Roman numeral equivalent = ";
+
+
+                //output 1000s
+                switch(n1000){
+                    case 3: cout<<"M";
+                    case 2: cout<<"M";
+                    case 1: cout<<"M";       
+                }
+                //output 100s
+                switch(n100){
+                    case 9: cout<<"CM"; break;
+                    case 8: cout<<"DCCC"; break;
+                    case 7: cout<<"DCC"; break; 
+                    case 6: cout<<"DC"; break;
+                    case 5: cout<<"D"; break;
+                    case 4: cout<<"CD"; break; 
+                    case 3: cout<<"C"; 
+                    case 2: cout<<"C"; 
+                    case 1: cout<<"C"; 
+                }
+                //output 10s
+                switch(n10){
+                    case 9: cout<<"XC"; break;
+                    case 8: cout<<"LXXX"; break;
+                    case 7: cout<<"LXX"; break; 
+                    case 6: cout<<"LX"; break;
+                    case 5: cout<<"L"; break;
+                    case 4: cout<<"XL"; break; 
+                    case 3: cout<<"XXX"; 
+                    case 2: cout<<"XX"; 
+                    case 1: cout<<"X"; 
+                }
+                //output 1s
+                switch(n1){
+                    switch(n10){
+                    case 9: cout<<"IX"; break;
+                    case 8: cout<<"VIII"; break;
+                    case 7: cout<<"VII"; break; 
+                    case 6: cout<<"VI"; break;
+                    case 5: cout<<"V"; break;
+                    case 4: cout<<"IV"; break; 
+                    case 3: cout<<"III"; 
+                    case 2: cout<<"II"; 
+                    case 1: cout<<"I";  
+                    }}cout<<endl;
+                    cout<<"----------------------------------"<<endl;    
                 
                 
                 break;
                 }case 9:{
                 cout<<endl;
                 cout<<"----------------------------------"<<endl;
-                cout<<"Solution to Savitch 9thEd Chap3 PracticeProb 6"<<endl;
-                cout<<"Buoyancy Force"<<endl<<endl;
-                    
+                cout<<"Solution to Savitch 9thEd Chap3 Prob"<<endl;
+                cout<<"Astrology Program"<<endl<<endl;
+                //Declare and initialize variables
+                string bdayMth,horoscp,althoro; //month of birthday
+                int bDay;                      //day of birth
+                char exitPro;                 //variable to exit program
+                //user can loop or quite
+                do{
+
+                //Input Data
+                cout<<"What month were you born(enter name of month)?"<<endl;
+                cin>>bdayMth;
+                cout<<"what day were you born?"<<endl;
+                cin>>bDay;
+                cout<<endl<<endl;
+                //output of date born
+                cout<<"You were born on "<<bdayMth<<" "<<bDay<<endl;
+
+                //Uppercase the month
+                for(int i=0;i<bdayMth.size();i++){
+                    bdayMth[i] = toupper(bdayMth[i]);
+                }
+
+
+                //If statments for horoscope
+                if(bdayMth=="MARCH"&&bDay>=21){
+                    horoscp="Aries";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay<=23){
+                    althoro="Pisces";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="MARCH"&&bDay<21){
+                    horoscp="Pisces";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay>=19){
+                     althoro="Aries";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="APRIL"&&bDay<=19){
+                    horoscp="Aries";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=17){
+                    althoro="Taurus";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="APRIL"&&bDay>19){
+                    horoscp="Taurus";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay<=21){
+                     althoro="Aries";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="MAY"&&bDay<=20){
+                    horoscp="Taurus";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay>=18){
+                     althoro="Gemini";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="MAY"&&bDay>20){
+                    horoscp="Gemini";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay<=22){
+                     althoro="Taurus";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JUNE"&&bDay<=21){
+                    horoscp="Gemini";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=19){
+                     althoro="Cancer";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JUNE"&&bDay>21){
+                    horoscp="Cancer";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=23){
+                     althoro="Gemini";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JULY"&&bDay<=22){
+                    horoscp="Cancer";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Leo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JULY"&&bDay>=23){
+                    horoscp="Leo";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=25){
+                    althoro="Cancer";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="AUGUST"&&bDay<=22){
+                    horoscp="Leo";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Virgo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="AUGUST"&&bDay>22){
+                    horoscp="Virgo";  
+                    cout<<"Your astrological sign is "<<horoscp<<endl; 
+                    if(bDay<=24){
+                    althoro="Leo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="SEPTEMBER"&&bDay<=22){
+                    horoscp="Virgo";
+                    cout<<"Your astrological sign is "<<horoscp<<endl; 
+                    if(bDay>=20){
+                    althoro="Libra";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="SEPTEMBER"&&bDay>22){
+                    horoscp="Libra";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=24){
+                    althoro="Virgo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="OCTOBER"&&bDay<=22){
+                    horoscp="Libra";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Scorpio";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="OCTOBER"&&bDay>22){
+                    horoscp="Scorpio";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=24){
+                    althoro="Libra";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="NOVEMBER"&&bDay<=21){
+                    horoscp="Scorpio";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=19){
+                    althoro="Sagittarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="NOVEMBER"&&bDay>21){
+                    horoscp="Sagittarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=23){
+                    althoro="Scorpio";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="DECEMBER"&&bDay<=22){
+                    horoscp="Sagittarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Capricorn";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="DECEMBER"&&bDay>22){
+                    horoscp="Capricorn";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=24){
+                    althoro="Sagittarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JANUARY"&&bDay<=19){
+                    horoscp="Capricorn";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=17){
+                    althoro="Aquarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JANUARY"&&bDay>19){
+                    horoscp="Aquarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=21){
+                    althoro="Capricorn";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="FEBRUARY"&&bDay<=18){
+                    horoscp="Aquarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=16){
+                    althoro="Pisces";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="FEBRUARY"&&bDay>18){
+                    horoscp="Pisces";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=20){
+                    althoro="Aquarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+                }}
+
+                //calculate or map inputs to outputs
+
+
+                //Output    
+                cout<<"Todays horoscope for "<<horoscp<<" is- "<<endl<<endl;
+                //horoscopes
+                if(horoscp=="Aries"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Taurus"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Gemini"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Cancer"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Leo"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Virgo"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Libra"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Scorpio"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Sagittarius"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Capricorn"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Aquarius"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }if(horoscp=="Pisces"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                }
+                //final output
+                cout<<"To enter another birthday enter Y"<<endl;
+                cout<<"To exit program enter N"<<endl;
+                cin>>exitPro;
+                toupper(exitPro);
+                }while(exitPro=='Y'||exitPro=='y');    
                 
-                
+                cout<<endl;
+                cout<<"----------------------------------"<<endl;
                 break;
+                
+                
                 }case 10:{
                 cout<<endl;
                 cout<<"----------------------------------"<<endl;
-                cout<<"Solution to Savitch 9thEd Chap3 PracticeProb 6"<<endl;
-                cout<<"Buoyancy Force"<<endl<<endl;
-                    
+                cout<<"Solution to Savitch 9thEd Chap3 Prob"<<endl;
+                cout<<"Modified Astrology Program"<<endl<<endl;
+                //Declare and initialize variables
+                string bdayMth,horoscp,althoro; //month of birthday
+                int bDay;                      //day of birth
+                char exitPro;                 //variable to exit program
+                //user can loop or quite
+                do{
+
+                //Input Data
+                cout<<"What month were you born(enter name of month)?"<<endl;
+                cin>>bdayMth;
+                cout<<"what day were you born?"<<endl;
+                cin>>bDay;
+                cout<<endl<<endl;
+                //output of date born
+                cout<<"You were born on "<<bdayMth<<" "<<bDay<<endl;
+
+                //Uppercase the month
+                for(int i=0;i<bdayMth.size();i++){
+                    bdayMth[i] = toupper(bdayMth[i]);
+                }
+
+
+                //If statments for horoscope
+                if(bdayMth=="MARCH"&&bDay>=21){
+                    horoscp="Aries";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay<=23){
+                    althoro="Pisces";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="MARCH"&&bDay<21){
+                    horoscp="Pisces";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay>=19){
+                     althoro="Aries";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="APRIL"&&bDay<=19){
+                    horoscp="Aries";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=17){
+                    althoro="Taurus";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="APRIL"&&bDay>19){
+                    horoscp="Taurus";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay<=21){
+                     althoro="Aries";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="MAY"&&bDay<=20){
+                    horoscp="Taurus";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay>=18){
+                     althoro="Gemini";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="MAY"&&bDay>20){
+                    horoscp="Gemini";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                     if(bDay<=22){
+                     althoro="Taurus";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JUNE"&&bDay<=21){
+                    horoscp="Gemini";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=19){
+                     althoro="Cancer";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JUNE"&&bDay>21){
+                    horoscp="Cancer";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=23){
+                     althoro="Gemini";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JULY"&&bDay<=22){
+                    horoscp="Cancer";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Leo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JULY"&&bDay>=23){
+                    horoscp="Leo";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=25){
+                    althoro="Cancer";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="AUGUST"&&bDay<=22){
+                    horoscp="Leo";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Virgo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="AUGUST"&&bDay>22){
+                    horoscp="Virgo";  
+                    cout<<"Your astrological sign is "<<horoscp<<endl; 
+                    if(bDay<=24){
+                    althoro="Leo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="SEPTEMBER"&&bDay<=22){
+                    horoscp="Virgo";
+                    cout<<"Your astrological sign is "<<horoscp<<endl; 
+                    if(bDay>=20){
+                    althoro="Libra";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="SEPTEMBER"&&bDay>22){
+                    horoscp="Libra";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=24){
+                    althoro="Virgo";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="OCTOBER"&&bDay<=22){
+                    horoscp="Libra";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Scorpio";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="OCTOBER"&&bDay>22){
+                    horoscp="Scorpio";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=24){
+                    althoro="Libra";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="NOVEMBER"&&bDay<=21){
+                    horoscp="Scorpio";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=19){
+                    althoro="Sagittarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="NOVEMBER"&&bDay>21){
+                    horoscp="Sagittarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=23){
+                    althoro="Scorpio";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="DECEMBER"&&bDay<=22){
+                    horoscp="Sagittarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=20){
+                    althoro="Capricorn";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="DECEMBER"&&bDay>22){
+                    horoscp="Capricorn";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=24){
+                    althoro="Sagittarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JANUARY"&&bDay<=19){
+                    horoscp="Capricorn";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=17){
+                    althoro="Aquarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="JANUARY"&&bDay>19){
+                    horoscp="Aquarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=21){
+                    althoro="Capricorn";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="FEBRUARY"&&bDay<=18){
+                    horoscp="Aquarius";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay>=16){
+                    althoro="Pisces";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+
+                }}else if(bdayMth=="FEBRUARY"&&bDay>18){
+                    horoscp="Pisces";
+                    cout<<"Your astrological sign is "<<horoscp<<endl;
+                    if(bDay<=20){
+                    althoro="Aquarius";
+                    cout<<"You are on the cusp of being a "<<althoro<<endl;
+                }}
+
+                //calculate or map inputs to outputs
+
+
+                //Output    
+                cout<<"Todays horoscope for "<<horoscp<<" is- "<<endl;
+                //horoscopes
+                if(horoscp=="Aries"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Aries, Leo, and Sagittarius."<<endl;
+                }if(horoscp=="Taurus"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Taurus, Virgo, and Capricorn."<<endl;
+                }if(horoscp=="Gemini"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Libra, Gemini, and Aquarius."<<endl;
+                }if(horoscp=="Cancer"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Aries, Leo, and Sagittarius."<<endl;
+                }if(horoscp=="Leo"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Aries, Leo, and Aquarius."<<endl;
+                }if(horoscp=="Virgo"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Taurus, Virgo, and Capricorn."<<endl;
+                }if(horoscp=="Libra"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Libra, Gemini, and Aquarius."<<endl;
+                }if(horoscp=="Scorpio"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Pisces, Scorpio, and Cancer."<<endl;
+                }if(horoscp=="Sagittarius"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Aries, Leo, and Sagittarius."<<endl;
+                }if(horoscp=="Capricorn"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Taurus, Virgo, and Capricorn."<<endl;
+                }if(horoscp=="Aquarius"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Libra, Gemini, and Aquarius."<<endl;
+                }if(horoscp=="Pisces"){
+                    cout<<"you will find happiness if you leave all your loved ones and worldly"
+                            " possessions behind and wander the Canadian tundra."<<endl<<endl;
+                    cout<<"You are most compatible with Pisces, Scorpio, and Cancer."<<endl;
+                }
+                //final output
+                cout<<"To enter another birthday enter Y"<<endl;
+                cout<<"To exit program enter N"<<endl;
+                cin>>exitPro;
+                toupper(exitPro);
+                }while(exitPro=='Y'||exitPro=='y');   
                 
-                
+                cout<<endl;
+                cout<<"----------------------------------"<<endl;
                 break;
             }default:{
                 cout<<"Exiting the Program"<<endl;
