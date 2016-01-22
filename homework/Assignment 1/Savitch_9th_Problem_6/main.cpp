@@ -6,7 +6,7 @@
  */
 
 //System Libraries
-#include < iostream>
+#include <iostream>
 using namespace std;
 
 //User Libraries
