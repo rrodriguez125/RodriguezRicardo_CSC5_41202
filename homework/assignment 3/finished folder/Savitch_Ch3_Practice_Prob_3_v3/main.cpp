@@ -273,7 +273,7 @@ if(horoscp=="Aries"){
 cout<<"To enter another birthday enter Y"<<endl;
 cout<<"To exit program enter N"<<endl;
 cin>>exitPro;
-toupper(exitPro);
+//toupper(exitPro);
 }while(exitPro=='Y'||exitPro=='y');
 //Exit stage right
 
