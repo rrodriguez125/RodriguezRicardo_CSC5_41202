@@ -7,6 +7,8 @@
 
 //System Libraries
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 //User Libraries
@@ -21,12 +23,14 @@ using namespace std;
 int main(int argc, char** argv) {
 //Declare and initialize variables
     
+    
+    
 //Input Data
 
 //calculate or map inputs to outputs
 
 //Output the results
-   
+    cout<<"random number "<<a<<"safs "<<b<<endl;
     
 //Exit stage right
 

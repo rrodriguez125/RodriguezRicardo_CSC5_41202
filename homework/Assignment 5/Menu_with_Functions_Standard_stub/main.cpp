@@ -41,9 +41,9 @@ int main(int argc, char** argv) {
     cout<<"Type 1 to Display Problem 1"<<endl;
     cout<<"Type 2 to Display Problem 2"<<endl;
     cout<<"Type 3 to Display Problem 3"<<endl;
-    cout<<"Type 4 to Display Problem 4"<<endl;
-    cout<<"Type 5 to Display Problem 5"<<endl;
-    cout<<"Type 6 to Display Problem 6"<<endl;
+    cout<<"Type 4 to Display Stub"<<endl;
+    cout<<"Type 5 to Display Stub"<<endl;
+    cout<<"Type 6 to Display Stub"<<endl;
     cout<<"Type anything else to exit"<<endl<<endl;
     cin>>nSoltn;
    
@@ -76,18 +76,27 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-void problem4();{
-    cout<<"we are in function problem 4"endl;
+//*****************************************************************************
+//************************************ problem4  *******************************
+//*****************************************************************************
+void problem4(){
+    cout<<"we are in function problem 4"<<endl;
     
     
                 }
-void problem5();{
-    cout<<"we are in function problem 4"endl;
+//*****************************************************************************
+//************************************ problem5  *******************************
+//*****************************************************************************
+void problem5(){
+    cout<<"we are in function problem 5"<<endl;
     
     
                 }
-void problem6{
-    cout<<"we are in function problem 4"endl;
+//*****************************************************************************
+//************************************ problem6  *******************************
+//*****************************************************************************
+void problem6(){
+    cout<<"we are in function problem 6"<<endl;
     
     
 }
