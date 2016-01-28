@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <cstring>
 using namespace std;
 
 //User Libraries
@@ -28,27 +29,30 @@ int main(int argc, char** argv) {
     float count=0;
     int num1;
     float percent;
-    short AA=0,AB=0,AC=0,AD=0;            //spaces for A row
-    short BA=0,BB=0,BC=0,BD=0;            //spaced for B row
-    short CA=0,CB=0,CC=0,CD=0;            //spaced for C row
-    short DA=0,DB=0,DC=0,DD=0;            //spaced for D row
+    int   AA=9,AB=9,AC=9,AD=9;            //spaces for A row
+    short BA=9,BB=9,BC=9,BD=9;            //spaced for B row
+    short CA=9,CB=9,CC=9,CD=9;            //spaced for C row
+    short DA=9,DB=9,DC=9,DD=9;            //spaced for D row
     short clickAA,clickAB,clickAC,clickAD;//value of each A row
     short clickBA,clickBB,clickBC,clickBD;//value of each A row
     short clickCA,clickCB,clickCC,clickCD;//value of each A row
     short clickDA,clickDB,clickDC,clickDD;//value of each A row
     short sectNum=0;                        //switch statement variable
-    char row;                             //user selected row
-    char col;                             //user selected column
-    short loopFun=0;                      //do while variable
+    char  row;                             //user selected row
+    char  col;                             //user selected column
+    int   loopFun=0;                      //do while variable
+    bool  game=true;                      //do while loop game menu 
+    int   countAA=0;
 //random number generator
 
 
     
-do{    
-for(int i=0;i<100000000;i++){
-    loopFun=0;
-    num1=rand()%1000-250; 
-    sectNum++;
+do{  
+  loopFun=0;
+  for(int i=0;i<17;i++){
+    
+    num1=rand()%100-30; 
+    sectNum=sectNum+1;
     
             switch(sectNum){
                 case  1:{clickAA=num1;break;
@@ -70,18 +74,20 @@ for(int i=0;i<100000000;i++){
                 }
                 
             }   
-    }
-}if(clickAA<0)loopFun++;if(clickAB<0)loopFun++;if(clickAC<0)loopFun++;if(clickAD<0)loopFun++;
-if(clickBA<0)loopFun++;if(clickBB<0)loopFun++;if(clickBC<0)loopFun++;if(clickBD<0)loopFun++;
-if(clickCA<0)loopFun++;if(clickCB<0)loopFun++;if(clickCC<0)loopFun++;if(clickCD<0)loopFun++;
-if(clickDA<0)loopFun++;if(clickDB<0)loopFun++;if(clickDC<0)loopFun++;if(clickDD<0)loopFun++;
-}while(loopFun<4||loopFun>6);
     
-//Input Data
+  }if(clickAA<0){loopFun++;}if(clickAB<0){loopFun++;}if(clickAC<0){loopFun++;if(clickAD<0)loopFun++;}
+if(clickBA<0){loopFun++;}if(clickBB<0){loopFun++;}if(clickBC<0){loopFun++;}if(clickBD<0){loopFun++;}
+if(clickCA<0){loopFun++;}if(clickCB<0){loopFun++;}if(clickCC<0){loopFun++;}if(clickCD<0){loopFun++;}
+if(clickDA<0){loopFun++;}if(clickDB<0){loopFun++;}if(clickDC<0){loopFun++;}if(clickDD<0){loopFun++;}
+}while(loopFun<4||loopFun>6);
+ 
+//game screen do while loop
+do{
+//Input Data where the game starts!
     cout<<"   A B C D"<<endl;
     cout<<"   --------"<<endl;
     cout<<"A |"<<AA<<"|"<<AB<<"|"<<AC<<"|"<<AD<<"|"<<endl;
-    cout<<"B |"<<BA<<"|"<<BB<<"|"<<DC<<"|"<<BD<<"|"<<endl;
+    cout<<"B |"<<BA<<"|"<<BB<<"|"<<BC<<"|"<<BD<<"|"<<endl;
     cout<<"C |"<<CA<<"|"<<CB<<"|"<<CC<<"|"<<CD<<"|"<<endl;
     cout<<"D |"<<DA<<"|"<<DB<<"|"<<DC<<"|"<<DD<<"|"<<endl;
     cout<<"___________"<<endl;
@@ -91,33 +97,57 @@ if(clickDA<0)loopFun++;if(clickDB<0)loopFun++;if(clickDC<0)loopFun++;if(clickDD<
     cin>>col;
     row=toupper(row);
     col=toupper(col);
-//if statement
+    cout<<"___________"<<endl;
+    
+    
+//if statement determining action after selection
+    if(row=='A'&&col=='A'){
+        if(clickAA<0){
+            AA='X';
+            game=false;
+        }if(clickAA>=0){
+            if(clickAB<0)countAA++;
+            if(clickBB<0)countAA++;
+            if(clickBA<0)countAA++;
+            AA=countAA;
+            
+        }
+    }
+    
+ //additional output
+    cout<<"The was sector you chose = "<<row<<col<<endl;
+    
+ //end of do while loop GAME OVER
+}while(game==true);
+    cout<<"YOU HIT A MINE!"<<endl;
+    cout<<"GAME OVER!"<<endl;
+    cout<<"   A B C D"<<endl;
+    cout<<"   --------"<<endl;
+    cout<<"A |"<<AA<<"|"<<AB<<"|"<<AC<<"|"<<AD<<"|"<<endl;
+    cout<<"B |"<<BA<<"|"<<BB<<"|"<<DC<<"|"<<BD<<"|"<<endl;
+    cout<<"C |"<<CA<<"|"<<CB<<"|"<<CC<<"|"<<CD<<"|"<<endl;
+    cout<<"D |"<<DA<<"|"<<DB<<"|"<<DC<<"|"<<DD<<"|"<<endl;
 
-
-//calculate or map inputs to outputs
-    percent=count/1000.0*100;
 //Output the results
-    cout<<"________________"<<endl;
-    cout<<"random number "<<num1<<" percent negative = %"<<percent<<endl;
-    cout<<"count = "<<count<<endl;
-    cout<<"row = "<<row<<endl;
-    cout<<"col = "<<col<<endl;
-    cout<<"clickAA = "<<clickAA<<endl;
-    cout<<"clickAB = "<<clickAB<<endl;
-    cout<<"clickAC = "<<clickAC<<endl;
-    cout<<"clickAD = "<<clickAD<<endl;
-    cout<<"clickBA = "<<clickAA<<endl;
-    cout<<"clickBB = "<<clickAB<<endl;
-    cout<<"clickBC = "<<clickAC<<endl;
-    cout<<"clickBD = "<<clickAD<<endl;
-    cout<<"clickCA = "<<clickAA<<endl;
-    cout<<"clickCB = "<<clickAB<<endl;
-    cout<<"clickCC = "<<clickAC<<endl;
-    cout<<"clickCD = "<<clickAD<<endl;
-    cout<<"clickDA = "<<clickAA<<endl;
-    cout<<"clickDB = "<<clickAB<<endl;
-    cout<<"clickDC = "<<clickAC<<endl;
-    cout<<"clickDD = "<<clickAD<<endl;
+//    cout<<"________________"<<endl;
+
+//    cout<<"clickAA = "<<clickAA<<endl;
+//    cout<<"clickAB = "<<clickAB<<endl;
+//    cout<<"clickAC = "<<clickAC<<endl;
+//    cout<<"clickAD = "<<clickAD<<endl;
+//    cout<<"clickBA = "<<clickBA<<endl;
+//    cout<<"clickBB = "<<clickBB<<endl;
+//    cout<<"clickBC = "<<clickBC<<endl;
+//    cout<<"clickBD = "<<clickBD<<endl;
+//    cout<<"clickCA = "<<clickCA<<endl;
+//    cout<<"clickCB = "<<clickCB<<endl;
+//    cout<<"clickCC = "<<clickCC<<endl;
+//    cout<<"clickCD = "<<clickCD<<endl;
+//    cout<<"clickDA = "<<clickDA<<endl;
+//    cout<<"clickDB = "<<clickDB<<endl;
+//    cout<<"clickDC = "<<clickDC<<endl;
+//    cout<<"clickDD = "<<clickDD<<endl;
+//    cout<<"loopFun = "<<loopFun<<endl;
     
 //Exit stage right
 
