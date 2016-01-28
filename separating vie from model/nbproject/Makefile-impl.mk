@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Project_1_v6
+PROJECTNAME=separating vie from model
 
 # Active Configuration
 DEFAULTCONF=Debug
