@@ -31,10 +31,10 @@ int main(int argc, char** argv) {
      
 //Declare and initialize variables
     int num1;                             //random number generator value
-    int   AA=9,AB=9,AC=9,AD=9;            //spaces for A row
-    short BA=9,BB=9,BC=9,BD=9;            //spaced for B row
-    short CA=9,CB=9,CC=9,CD=9;            //spaced for C row
-    short DA=9,DB=9,DC=9,DD=9;            //spaced for D row
+    char   AA=' ',AB=' ',AC=' ',AD=' ';            //spaces for A row
+    char   BA=' ',BB=' ',BC=' ',BD=' ';            //spaced for B row
+    char   CA=' ',CB=' ',CC=' ',CD=' ';            //spaced for C row
+    char   DA=' ',DB=' ',DC=' ',DD=' ';            //spaced for D row
     short clickAA,clickAB,clickAC,clickAD;//value of each A row
     short clickBA,clickBB,clickBC,clickBD;//value of each B row
     short clickCA,clickCB,clickCC,clickCD;//value of each C row
@@ -61,7 +61,7 @@ do{
 cout<<"Minesweeper"<<endl;
 cout<<"___________"<<endl;
 cout<<"If you would like to see the directions enter A"<<endl;
-cout<<"If you would like to select difficulty(default easy) enter B"<<endl;
+cout<<"If you would like to select difficulty(default Beginner) enter B"<<endl;
 cout<<"If you just want to play the game enter C"<<endl;
 cin>>menu;
 menu=toupper(menu);
@@ -82,9 +82,9 @@ switch(menu){
                 do{
                 loopFn2=true;
                 cout<<"Select a Difficulty."<<endl;
-                cout<<"For Hard input A"<<endl;
-                cout<<"For Medium input B"<<endl;
-                cout<<"For Easy input C"<<endl;
+                cout<<"For veteran mode(8 mines) input A"<<endl;
+                cout<<"For skilled mode(6 mines) input B"<<endl;
+                cout<<"For Beginner mode(4 mines) input C"<<endl;
                 cin>>diff;
                 diff=toupper(diff);
                 cout<<"________________________________________________"<<endl;
@@ -141,7 +141,7 @@ if(clickBA<0){loopFun++;}if(clickBB<0){loopFun++;}if(clickBC<0){loopFun++;}if(cl
 if(clickCA<0){loopFun++;}if(clickCB<0){loopFun++;}if(clickCC<0){loopFun++;}if(clickCD<0){loopFun++;}
 if(clickDA<0){loopFun++;}if(clickDB<0){loopFun++;}if(clickDC<0){loopFun++;}if(clickDD<0){loopFun++;}
 }while(loopFun=!mines);
- 
+
 //game screen do-while loop
 do{
     
@@ -153,9 +153,8 @@ do{
     cout<<"C |"<<CA<<"|"<<CB<<"|"<<CC<<"|"<<CD<<"|"<<endl;
     cout<<"D |"<<DA<<"|"<<DB<<"|"<<DC<<"|"<<DD<<"|"<<endl;
     cout<<"________________________________________________"<<endl;
-    cout<<"Input a row."<<endl;
+    cout<<"Input a row then column. Ex) AC"<<endl;
     cin>>row;
-    cout<<"Input a column."<<endl;
     cin>>col;
     row=toupper(row);
     col=toupper(col);
@@ -165,13 +164,13 @@ do{
 //if statement determining action after selection of row A
     if(row=='A'&&col=='A'){
         if(clickAA<0){
-            AA=9;
+            AA='X';
             game=false;
         }if(clickAA>=0){
             if(clickAB<0)countAA++;
             if(clickBB<0)countAA++;
             if(clickBA<0)countAA++;
-            AA=countAA;
+            AA=countAA+48;
             tick++;
             numMine=countAA;
         }
@@ -185,7 +184,7 @@ do{
             if(clickBB<0)countAB++;
             if(clickBC<0)countAB++;
             if(clickAC<0)countAB++;
-            AB=countAB;  
+            AB=countAB+48;  
             tick++;
             numMine=countAB;
         }
@@ -199,7 +198,7 @@ do{
             if(clickBB<0)countAC++;
             if(clickBC<0)countAC++;
             if(clickBD<0)countAC++;
-            AC=countAC;
+            AC=countAC+48;
             tick++;
             numMine=countAC;
         }
@@ -211,7 +210,7 @@ do{
             if(clickAC<0)countAD++;
             if(clickBC<0)countAD++;
             if(clickBD<0)countAD++;
-            AD=countAD;  
+            AD=countAD+48;  
             tick++;
             numMine=countAD;
         }
@@ -227,7 +226,7 @@ do{
             if(clickBB<0)countBA++;
             if(clickCA<0)countBA++;
             if(clickCB<0)countBA++;
-            BA=countBA;  
+            BA=countBA+48;  
             tick++;
             numMine=countBA;
         }
@@ -244,7 +243,7 @@ do{
             if(clickCA<0)countBB++;
             if(clickCB<0)countBB++;
             if(clickCC<0)countBB++;
-            BB=countBB;  
+            BB=countBB+48;  
             tick++;
             numMine=countBB;
         }
@@ -261,7 +260,7 @@ do{
             if(clickCB<0)countBC++;
             if(clickCC<0)countBC++;
             if(clickCD<0)countBC++;
-            BC=countBC;  
+            BC=countBC+48;  
             tick++;
             numMine=countBC;
         }
@@ -275,7 +274,7 @@ do{
             if(clickBC<0)countBD++;
             if(clickCC<0)countBD++;
             if(clickCD<0)countBD++;
-            BD=countBD;  
+            BD=countBD+48;  
             tick++;
             numMine=countBD;
         }
@@ -291,7 +290,7 @@ do{
             if(clickCB<0)countCA++;
             if(clickDA<0)countCA++;
             if(clickDB<0)countCA++;
-            CA=countCA;  
+            CA=countCA+48;  
             tick++;
             numMine=countCA;
         }
@@ -308,7 +307,7 @@ do{
             if(clickDA<0)countCB++;
             if(clickDB<0)countCB++;
             if(clickDC<0)countCB++;
-            CB=countCB; 
+            CB=countCB+48; 
             tick++;
             numMine=countCB;
         }
@@ -325,7 +324,7 @@ do{
             if(clickDB<0)countCC++;
             if(clickDC<0)countCC++;
             if(clickDD<0)countCC++;
-            CC=countCC;  
+            CC=countCC+48;  
             tick++;
             numMine=countCC;
         }
@@ -339,7 +338,7 @@ do{
             if(clickCC<0)countCD++;
             if(clickDC<0)countCD++;
             if(clickDD<0)countCD++;
-            CD=countCD;  
+            CD=countCD+48;  
             tick++;
             numMine=countCD;
         }
@@ -353,7 +352,7 @@ do{
             if(clickCA<0)countDA++;
             if(clickCB<0)countDA++;
             if(clickDB<0)countDA++;
-            DA=countDA;  
+            DA=countDA+48;  
             tick++;
             numMine=countDA;
         }
@@ -367,7 +366,7 @@ do{
             if(clickCC<0)countDB++;
             if(clickDA<0)countDB++;
             if(clickDC<0)countDB++;
-            DB=countDB;  
+            DB=countDB+48;  
             tick++;
             numMine=countDB;
         }
@@ -381,7 +380,7 @@ do{
             if(clickCC<0)countDC++;
             if(clickDB<0)countDC++;
             if(clickDD<0)countDC++;
-            DC=countDC;  
+            DC=countDC+48;  
             tick++;
             numMine=countDC;
         }
@@ -393,7 +392,7 @@ do{
             if(clickCC<0)countDD++;
             if(clickCD<0)countDD++;
             if(clickDC<0)countDD++;
-            DD=countDD;  
+            DD=countDD+48;  
             tick++;
             numMine=countDD;
         }
@@ -407,6 +406,7 @@ do{
     cout<<"The last sector you chose = "<<row<<col<<endl;
     if(numMine>=0&&game==true&&tick<mineWin){
         cout<<"There are "<<mines<<" mines on the field."<<endl;
+        cout<<"You have cleared "<<tick<<" out of "<<mineWin<<" sectors!"<<endl;
         cout<<"You are surrounded by "<<numMine<<" mine(s)!"<<endl;
         
     }
