@@ -1,8 +1,8 @@
 /* 
  * File:   main.cpp
  * Author: Ricardo Rodriguez
- * Created on January 4, 2016, 10:18 AM
- * Purpose: Check out IDE
+ * Created on January 31, 2016, 2:18 AM
+ * Purpose: Project 1 Minesweeper
  */
 
 //System Libraries
@@ -30,20 +30,20 @@ int main(int argc, char** argv) {
     srand(time(0));
      
 //Declare and initialize variables
-    int num1;                             //random number generator value
+    int num1;                             //asigns random numbers to switch
     char   AA=' ',AB=' ',AC=' ',AD=' ';            //spaces for A row
     char   BA=' ',BB=' ',BC=' ',BD=' ';            //spaced for B row
     char   CA=' ',CB=' ',CC=' ',CD=' ';            //spaced for C row
     char   DA=' ',DB=' ',DC=' ',DD=' ';            //spaced for D row
-    short clickAA,clickAB,clickAC,clickAD;//value of each A row
-    short clickBA,clickBB,clickBC,clickBD;//value of each B row
-    short clickCA,clickCB,clickCC,clickCD;//value of each C row
-    short clickDA,clickDB,clickDC,clickDD;//value of each D row
-    short sectNum=0;                      //switch statement variable
+    int clickAA,clickAB,clickAC,clickAD;//value of each A row
+    int clickBA,clickBB,clickBC,clickBD;//value of each B row
+    int clickCA,clickCB,clickCC,clickCD;//value of each C row
+    int clickDA,clickDB,clickDC,clickDD;//value of each D row
+    int sectNum=0;                      //switch statement variable
     char  row;                            //user selected row
     char  col;                            //user selected column
     int   loopFun=0;                      //do while variable
-    bool  game=true,loopFn2=true,loopFn3=true;   //loop variables
+    bool  game=true,loopFn2=true,loopFn3=true;    //loop variables
     int   countAA=0,countAB=0,countAC=0,countAD=0,//determins number of mines in area
           countBA=0,countBB=0,countBC=0,countBD=0,
           countCA=0,countCB=0,countCC=0,countCD=0,
@@ -53,7 +53,10 @@ int main(int argc, char** argv) {
     char  menu,extMenu;                   //menu varibales
     int   tick=0;                         //determines when you win
     int   mineWin;                        //variable that determines if you win
-    
+    int   cheat1=0,cheat2=0,cheat3=0,cheat4=0,     //anti cheating variable
+          cheat5=0,cheat6=0,cheat7=0,cheat8=0,
+          cheat9=0,cheat10=10,cheat11=0,cheat12=0,
+          cheat13=0,cheat14=0,cheat15=0,cheat16=0;
 //game menu
 do{
     loopFn2=true;
@@ -71,10 +74,16 @@ menu=toupper(menu);
 //switch for game menu
 switch(menu){
     case 'A':{cout<<"Directions:"<<endl;
+               cout<<"Minesweeper is a game of strategy. ";
                cout<<"The purpose of the game is to open all the sectors of the";
                cout<<" board which do not contain a mine. You lose if you set";
                cout<<" off a mine sector. Every non-mine sector you open will tell";
                cout<<" you the total number of mines in the neighboring sectors.";
+               cout<<endl;
+               cout<<"Note: Due to the random nature of the game do not get";
+               cout<<" discouraged if your first turn is a mine hit. This may";
+               cout<<" happen several times. First turn has a 25% chance of a mine";
+               cout<<" hit on beginner difficulty.";
                cout<<endl;
                cout<<"To continue enter any character."<<endl;
                cin>>extMenu;loopFn3=false;break;
@@ -166,13 +175,13 @@ do{
         if(clickAA<0){
             AA='X';
             game=false;
-        }if(clickAA>=0){
+        }if(clickAA>=0&&cheat1!=1){
             if(clickAB<0)countAA++;
             if(clickBB<0)countAA++;
             if(clickBA<0)countAA++;
             AA=countAA+48;
             numMine=countAA;
-           
+            cheat1=1;
             tick++;
             
         }
@@ -180,7 +189,7 @@ do{
         if(clickAB<0){
             AB='X';
             game=false;
-        }if(clickAB>=0){
+        }if(clickAB>=0&&cheat2!=1){
             if(clickAA<0)countAB++;
             if(clickBA<0)countAB++;
             if(clickBB<0)countAB++;
@@ -188,7 +197,7 @@ do{
             if(clickAC<0)countAB++;
             AB=countAB+48;  
             numMine=countAB;
-           
+            cheat2=1;
             tick++;
             
         }
@@ -196,7 +205,7 @@ do{
         if(clickAC<0){
             AC='X';
             game=false;
-        }if(clickAC>=0){
+        }if(clickAC>=0&&cheat3!=1){
             if(clickAB<0)countAC++;
             if(clickAD<0)countAC++;
             if(clickBB<0)countAC++;
@@ -204,7 +213,7 @@ do{
             if(clickBD<0)countAC++;
             AC=countAC+48;
             numMine=countAC;
-       
+            cheat3=1;
             tick++;
             
         }
@@ -212,13 +221,15 @@ do{
         if(clickAD<0){
             AD='X';
             game=false;
-        }if(clickAD>=0){
+        }if(clickAD>=0&&cheat4!=1){
             if(clickAC<0)countAD++;
             if(clickBC<0)countAD++;
             if(clickBD<0)countAD++;
             AD=countAD+48;  
-            tick++;
             numMine=countAD;
+            cheat4=1;
+            tick++;
+            
         }
     }
 //of row B******************************************************
@@ -226,21 +237,23 @@ do{
         if(clickBA<0){
             BA='X';
             game=false;
-        }if(clickBA>=0){
+        }if(clickBA>=0&&cheat5!=1){
             if(clickAA<0)countBA++;
             if(clickAB<0)countBA++;
             if(clickBB<0)countBA++;
             if(clickCA<0)countBA++;
             if(clickCB<0)countBA++;
             BA=countBA+48;  
-            tick++;
             numMine=countBA;
+            cheat5=1;
+            tick++;
+            
         }
     }if(row=='B'&&col=='B'){
         if(clickBB<0){
             BB='X';
             game=false;
-        }if(clickBB>=0){
+        }if(clickBB>=0&&cheat6!=1){
             if(clickAA<0)countBB++;
             if(clickAB<0)countBB++;
             if(clickAC<0)countBB++;
@@ -250,14 +263,16 @@ do{
             if(clickCB<0)countBB++;
             if(clickCC<0)countBB++;
             BB=countBB+48;  
-            tick++;
             numMine=countBB;
+            cheat6=1;
+            tick++;
+            
         }
     }if(row=='B'&&col=='C'){
         if(clickBC<0){
             BC='X';
             game=false;
-        }if(clickBC>=0){
+        }if(clickBC>=0&&cheat7!=1){
             if(clickAB<0)countBC++;
             if(clickAC<0)countBC++;
             if(clickAD<0)countBC++;
@@ -267,22 +282,26 @@ do{
             if(clickCC<0)countBC++;
             if(clickCD<0)countBC++;
             BC=countBC+48;  
-            tick++;
             numMine=countBC;
+            cheat7=1;
+            tick++;
+            
         }
     }if(row=='B'&&col=='D'){
         if(clickBD<0){
             BD='X';
             game=false;
-        }if(clickBD>=0){
+        }if(clickBD>=0&&cheat8!=1){
             if(clickAC<0)countBD++;
             if(clickAD<0)countBD++;
             if(clickBC<0)countBD++;
             if(clickCC<0)countBD++;
             if(clickCD<0)countBD++;
             BD=countBD+48;  
-            tick++;
             numMine=countBD;
+            cheat8=1;
+            tick++;
+            
         }
     }
 //of row C******************************************************
@@ -290,21 +309,23 @@ do{
         if(clickCA<0){
             CA='X';
             game=false;
-        }if(clickCA>=0){
+        }if(clickCA>=0&&cheat9!=1){
             if(clickBA<0)countCA++;
             if(clickBB<0)countCA++;
             if(clickCB<0)countCA++;
             if(clickDA<0)countCA++;
             if(clickDB<0)countCA++;
             CA=countCA+48;  
-            tick++;
             numMine=countCA;
+            cheat9=1;
+            tick++;
+            
         }
     }if(row=='C'&&col=='B'){
         if(clickCB<0){
             CB='X';
             game=false;
-        }if(clickCB>=0){
+        }if(clickCB>=0&&cheat10!=1){
             if(clickBA<0)countCB++;
             if(clickBB<0)countCB++;
             if(clickBC<0)countCB++;
@@ -314,14 +335,16 @@ do{
             if(clickDB<0)countCB++;
             if(clickDC<0)countCB++;
             CB=countCB+48; 
-            tick++;
             numMine=countCB;
+            cheat10=1;
+            tick++;
+            
         }
     }if(row=='C'&&col=='C'){
         if(clickCC<0){
             CC='X';
             game=false;
-        }if(clickCC>=0){
+        }if(clickCC>=0&&cheat11!=1){
             if(clickBB<0)countCC++;
             if(clickBC<0)countCC++;
             if(clickBD<0)countCC++;
@@ -331,22 +354,26 @@ do{
             if(clickDC<0)countCC++;
             if(clickDD<0)countCC++;
             CC=countCC+48;  
-            tick++;
             numMine=countCC;
+            cheat11=1;
+            tick++;
+            
         }
     }if(row=='C'&&col=='D'){
         if(clickCD<0){
             CD='X';
             game=false;
-        }if(clickCD>=0){
+        }if(clickCD>=0&&cheat12!=1){
             if(clickBC<0)countCD++;
             if(clickBD<0)countCD++;
             if(clickCC<0)countCD++;
             if(clickDC<0)countCD++;
             if(clickDD<0)countCD++;
             CD=countCD+48;  
-            tick++;
             numMine=countCD;
+            cheat12=1;
+            tick++;
+            
         }
     }
 //of row D******************************************************    
@@ -354,53 +381,61 @@ do{
         if(clickDA<0){
             DA='X';
             game=false;
-        }if(clickDA>=0){
+        }if(clickDA>=0&&cheat13!=1){
             if(clickCA<0)countDA++;
             if(clickCB<0)countDA++;
             if(clickDB<0)countDA++;
             DA=countDA+48;  
-            tick++;
             numMine=countDA;
+            cheat13=1;
+            tick++;
+           
         }
     }if(row=='D'&&col=='B'){
         if(clickDB<0){
             DB='X';
             game=false;
-        }if(clickDB>=0){
+        }if(clickDB>=0&&cheat14!=1){
             if(clickCA<0)countDB++;
             if(clickCB<0)countDB++;
             if(clickCC<0)countDB++;
             if(clickDA<0)countDB++;
             if(clickDC<0)countDB++;
             DB=countDB+48;  
-            tick++;
             numMine=countDB;
+            cheat14=1;
+            tick++;
+            
         }
     }if(row=='D'&&col=='C'){
         if(clickDC<0){
             DC='X';
             game=false;
-        }if(clickDC>=0){
+        }if(clickDC>=0&&cheat15!=1){
             if(clickCD<0)countDC++;
             if(clickCB<0)countDC++;
             if(clickCC<0)countDC++;
             if(clickDB<0)countDC++;
             if(clickDD<0)countDC++;
             DC=countDC+48;  
-            tick++;
             numMine=countDC;
+            cheat15=1;
+            tick++;
+            
         }
     }if(row=='D'&&col=='D'){
         if(clickDD<0){
             DD='X';
             game=false;
-        }if(clickDD>=0){
+        }if(clickDD>=0&&cheat16!=1){
             if(clickCC<0)countDD++;
             if(clickCD<0)countDD++;
             if(clickDC<0)countDD++;
             DD=countDD+48;  
-            tick++;
             numMine=countDD;
+            cheat16=1;
+            tick++;
+            
         }
     }
  //calculations of win variable
@@ -436,26 +471,7 @@ do{
     cin>>srtOver;
     srtOver=toupper(srtOver);
 }while(srtOver=='Y');
-//Output the results
-//    cout<<"________________"<<endl;
-//
-//    cout<<"clickAA = "<<clickAA<<endl;
-//    cout<<"clickAB = "<<clickAB<<endl;
-//    cout<<"clickAC = "<<clickAC<<endl;
-//    cout<<"clickAD = "<<clickAD<<endl;
-//    cout<<"clickBA = "<<clickBA<<endl;
-//    cout<<"clickBB = "<<clickBB<<endl;
-//    cout<<"clickBC = "<<clickBC<<endl;
-//    cout<<"clickBD = "<<clickBD<<endl;
-//    cout<<"clickCA = "<<clickCA<<endl;
-//    cout<<"clickCB = "<<clickCB<<endl;
-//    cout<<"clickCC = "<<clickCC<<endl;
-//    cout<<"clickCD = "<<clickCD<<endl;
-//    cout<<"clickDA = "<<clickDA<<endl;
-//    cout<<"clickDB = "<<clickDB<<endl;
-//    cout<<"clickDC = "<<clickDC<<endl;
-//    cout<<"clickDD = "<<clickDD<<endl;
-//    cout<<"loopFun = "<<loopFun<<endl;   
+
 //Exit stage right
 
     return 0;
