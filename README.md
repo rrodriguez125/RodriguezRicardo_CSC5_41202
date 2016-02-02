@@ -1,1 +1,0 @@
-# RodriguezRicardo_CSC5_41202

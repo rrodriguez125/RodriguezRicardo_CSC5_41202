@@ -19,14 +19,27 @@ using namespace std;
 
 //Function Prototypes
 
+void prac(int, int);
+
+
 //Execution Begins Here
 int main(int argc, char** argv) {
 //Declare and initialize variables
-    
+    int num1;
+    int num2;
     
     
 //Input Data
-
+    cout<<"a+b=?"<<endl;
+    cout<<"Input a"<<endl;
+    cin>>num1;
+    cout<<"Input b"<<endl;
+    cin>>num2;
+    
+//practic
+    
+    prac(num1, num2);
+  
 //calculate or map inputs to outputs
 
 //Output the results
@@ -36,3 +49,12 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+//******************************************************************************
+void prac(int a, int b){
+    int C;
+    for(int i=0;i<5;i++){
+    C=a+b;
+            cout<<a<<" + "<<b<<" = "<<C<<endl;
+            a++;
+            b++;
+    }}
