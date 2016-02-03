@@ -30,15 +30,15 @@ int main(int argc, char** argv) {
     srand(time(0));
      
 //Declare and initialize variables
-    int num1;                             //asigns random numbers to switch
+    int num1=0;                             //asigns random numbers to switch
     char   AA=' ',AB=' ',AC=' ',AD=' ';            //spaces for A row
     char   BA=' ',BB=' ',BC=' ',BD=' ';            //spaced for B row
     char   CA=' ',CB=' ',CC=' ',CD=' ';            //spaced for C row
     char   DA=' ',DB=' ',DC=' ',DD=' ';            //spaced for D row
-    int clickAA,clickAB,clickAC,clickAD;//value of each A row
-    int clickBA,clickBB,clickBC,clickBD;//value of each B row
-    int clickCA,clickCB,clickCC,clickCD;//value of each C row
-    int clickDA,clickDB,clickDC,clickDD;//value of each D row
+    int clickAA=0,clickAB=0,clickAC=0,clickAD=0;//value of each A row
+    int clickBA=0,clickBB=0,clickBC=0,clickBD=0;//value of each B row
+    int clickCA=0,clickCB=0,clickCC=0,clickCD=0;//value of each C row
+    int clickDA=0,clickDB=0,clickDC=0,clickDD=0;//value of each D row
     int sectNum=0;                      //switch statement variable
     char  row;                            //user selected row
     char  col;                            //user selected column
@@ -48,11 +48,11 @@ int main(int argc, char** argv) {
           countBA=0,countBB=0,countBC=0,countBD=0,
           countCA=0,countCB=0,countCC=0,countCD=0,
           countDA=0,countDB=0,countDC=0,countDD=0;
-    int   mines=4,numMine;                //how many mines are on field
+    int   mines=4,numMine=0;                //how many mines are on field
     char  diff;                           //difficulty level variable
     char  menu,extMenu;                   //menu varibales
     int   tick=0;                         //determines when you win
-    int   mineWin;                        //variable that determines if you win
+    int   mineWin=0;                        //variable that determines if you win
     int   cheat1=0,cheat2=0,cheat3=0,cheat4=0,     //anti cheating variable
           cheat5=0,cheat6=0,cheat7=0,cheat8=0,
           cheat9=0,cheat10=10,cheat11=0,cheat12=0,

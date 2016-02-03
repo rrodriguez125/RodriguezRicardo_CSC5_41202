@@ -85,7 +85,7 @@ void calc(int lb, int ou, int& kiloG, float& grams){
     float deciKg;                //decimal portion of total Kg value
 
     
-    //calculation of pounds and ounces to Kg
+//calculation of pounds and ounces to Kg
     ouPound=ou*CNVTOU;
     totalLb=lb+ouPound;
     totalKg=totalLb*CNVTLB;
