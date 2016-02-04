@@ -50,7 +50,7 @@ void input(int ar[], int sz){
     srand(time(0));
     
     //declar variables
-    int row;  //determins length of row
+    int row=0;  //determins length of row
     
     
     //fill array

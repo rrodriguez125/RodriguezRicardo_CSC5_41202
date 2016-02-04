@@ -50,7 +50,7 @@ void input(int ar[], int sz){
     srand(time(0));
     
     //declar variables
-    int count;  //determins how many 2s are in array
+    int count=0;  //determins how many 2s are in array
     
     
     //fill array

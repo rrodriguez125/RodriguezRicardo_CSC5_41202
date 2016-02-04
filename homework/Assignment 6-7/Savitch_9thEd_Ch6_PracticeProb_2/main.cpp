@@ -51,7 +51,7 @@ void input(int ar[], int sz){
     srand(time(0));
     
     //declar variables
-    int sum;        //sum of the array
+    int sum=0;        //sum of the array
     float average=0;//average of array
     
     //fill array
