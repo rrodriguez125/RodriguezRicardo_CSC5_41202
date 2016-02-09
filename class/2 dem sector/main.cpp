@@ -20,12 +20,12 @@ const int COL=4;
 const int ROW=4;
 
 //Function prototypes
-int fillSect(int [][ROW][COL]);
+int fillSect(int [ROW][COL]);
 void screen(char [], char &, char &);
 char dispVal(char []);
-int mineVal(int [][ROW][COL], int []);
+int mineVal(int [ROW][COL], int []);
 void convert(char , char , int &, int&, int&);
-void propSec(int , int , int , int [][ROW][COL],char *, bool &);
+void propSec(int , int , int , int [ROW][COL],char *, bool &,int [] );
 void screen2(char [], char &, char &,bool);
 
 //Execution Begins Here
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     
     
     //Declare variables
-    int  sector[16][ROW][COL];//array determines sector value
+    int  sector[ROW][COL];//array determines sector value
     char disp[16];            //array display game screen
     char row;                 //row player input of screen
     char col;                 //column player input of screen
@@ -49,20 +49,20 @@ int main(int argc, char** argv) {
     
     //calculate number of mines around each sector
     mineVal(sector, mineNum);
-    
+
     //Fill display screen
     dispVal(disp);
     
     
     //display first game screen
     screen(disp, row, col);
-
+    
     do{
     //converts row column input to integer for array
     convert(row,col,conv,rowInt,colInt);
     
     //Determines properties of sector chosen
-    propSec(conv,rowInt, colInt,sector,disp,game);
+    propSec(conv,rowInt, colInt,sector,disp,game,mineNum);
     
     
     //display second game screen
@@ -80,21 +80,20 @@ int main(int argc, char** argv) {
 //******************************************************************************
 //                                  Filles Sectors with values
 
-int fillSect(int sector[][ROW][COL]){
+int fillSect(int sector[ROW][COL]){
     
     //random number seed
     srand(time(0));
    
     //declare variable
-    int num1=0;     //random variable for array
-    int i=0;       
+    int num1=0;     //random variable for array     
     int loopFn1=0; //loop function variable
     
     //loop function to set mines
     do{
     
     //reset variables   
-        i=0;       
+//    int i=0;
         loopFn1=0; 
         
         
@@ -103,15 +102,17 @@ int fillSect(int sector[][ROW][COL]){
             for(int col=0;col<COL;col++){
             
                 num1=rand()%100-30; 
-                sector[i][row][col]=num1;
+                sector[row][col]=num1;
               
         
                 if(num1<0){loopFn1++;}
         
-//    TAKE OUT WHEN NO LONGER NEED. tests filled array
-                cout<<"sector "<<i<<" = "<<num1<<endl;
-                cout<<loopFn1<<endl;
-                i++;
+////    TAKE OUT WHEN NO LONGER NEED. tests filled array
+//                cout<<"sector "<<i<<" = "<<sector[row][col]<<endl;
+//                if(i==15){
+//                    cout<<"------------------------------------------------------------"<<endl;
+//                }
+//                i++;
         }
     }
     }while(loopFn1!=4);
@@ -180,7 +181,7 @@ void screen2(char disp[], char &row, char &col,bool game ){
 //******************************************************************************
 //******************************************************************************
 //                   Number of values around current sectors
-int mineVal(int sector[][ROW][COL], int secVal[]){
+int mineVal(int sector[ROW][COL], int secVal[]){
     
     //declare variables
     int i=0;   //fills array
@@ -194,66 +195,68 @@ int mineVal(int sector[][ROW][COL], int secVal[]){
     for(int row=0;row<ROW;row++){
         for(int col=0;col<COL;col++){
             if((row==1||row==2)&&(col==1||col==2)){
-                if(sector[!i][row-1][col-1]<0)secVal[i]++;
-                if(sector[!i][row-1][col]<0)secVal[i]++;
-                if(sector[!i][row-1][col+1]<0)secVal[i]++;
-                if(sector[!i][row][col-1]<0)secVal[i]++;
-                if(sector[!i][row][col+1]<0)secVal[i]++;
-                if(sector[!i][row+1][col-1]<0)secVal[i]++;
-                if(sector[!i][row+1][col]<0)secVal[i]++;
-                if(sector[!i][row+1][col+1]<0)secVal[i]++;
+                if(sector[row-1][col-1]<0)secVal[i]++;
+                if(sector[row-1][col]<0)secVal[i]++;
+                if(sector[row-1][col+1]<0)secVal[i]++;
+                if(sector[row][col-1]<0)secVal[i]++;
+                if(sector[row][col+1]<0)secVal[i]++;
+                if(sector[row+1][col-1]<0)secVal[i]++;
+                if(sector[row+1][col]<0)secVal[i]++;
+                if(sector[row+1][col+1]<0)secVal[i]++;
                 i++;
             }else if((row==0)&&(col==1||col==2)){
-                if(sector[!i][row][col-1]<0)secVal[i]++;
-                if(sector[!i][row][col+1]<0)secVal[i]++;
-                if(sector[!i][row+1][col-1]<0)secVal[i]++;
-                if(sector[!i][row+1][col]<0)secVal[i]++;
-                if(sector[!i][row+1][col+1]<0)secVal[i]++;
+                if(sector[row][col-1]<0)secVal[i]++;
+                if(sector[row][col+1]<0)secVal[i]++;
+                if(sector[row+1][col-1]<0)secVal[i]++;
+                if(sector[row+1][col]<0)secVal[i]++;
+                if(sector[row+1][col+1]<0)secVal[i]++;
                 i++;
             }else if((row==3)&&(col==1||col==2)){
-                if(sector[!i][row-1][col-1]<0)secVal[i]++;
-                if(sector[!i][row-1][col]<0)secVal[i]++;
-                if(sector[!i][row-1][col+1]<0)secVal[i]++;
-                if(sector[!i][row][col-1]<0)secVal[i]++;
-                if(sector[!i][row][col+1]<0)secVal[i]++;
+                if(sector[row-1][col-1]<0)secVal[i]++;
+                if(sector[row-1][col]<0)secVal[i]++;
+                if(sector[row-1][col+1]<0)secVal[i]++;
+                if(sector[row][col-1]<0)secVal[i]++;
+                if(sector[row][col+1]<0)secVal[i]++;
                 i++;
             }else if((row==1||row==2)&&(col==0)){
-                if(sector[!i][row-1][col]<0)secVal[i]++;
-                if(sector[!i][row-1][col+1]<0)secVal[i]++;
-                if(sector[!i][row][col+1]<0)secVal[i]++;
-                if(sector[!i][row+1][col]<0)secVal[i]++;
-                if(sector[!i][row+1][col+1]<0)secVal[i]++;
+                if(sector[row-1][col]<0)secVal[i]++;
+                if(sector[row-1][col+1]<0)secVal[i]++;
+                if(sector[row][col+1]<0)secVal[i]++;
+                if(sector[row+1][col]<0)secVal[i]++;
+                if(sector[row+1][col+1]<0)secVal[i]++;
                 i++;
             }else if((row==1||row==2)&&(col==3)){
-                if(sector[!i][row-1][col-1]<0)secVal[i]++;
-                if(sector[!i][row-1][col]<0)secVal[i]++;
-                if(sector[!i][row][col-1]<0)secVal[i]++;
-                if(sector[!i][row+1][col-1]<0)secVal[i]++;
-                if(sector[!i][row+1][col]<0)secVal[i]++;
+                if(sector[row-1][col-1]<0)secVal[i]++;
+                if(sector[row-1][col]<0)secVal[i]++;
+                if(sector[row][col-1]<0)secVal[i]++;
+                if(sector[row+1][col-1]<0)secVal[i]++;
+                if(sector[row+1][col]<0)secVal[i]++;
                 i++;
             }else if(row==0&&col==0){
-                if(sector[!i][row][col+1]<0)secVal[i]++;
-                if(sector[!i][row+1][col]<0)secVal[i]++;
-                if(sector[!i][row+1][col+1]<0)secVal[i]++;
+                if(sector[row][col+1]<0)secVal[i]++;
+                if(sector[row+1][col]<0)secVal[i]++;
+                if(sector[row+1][col+1]<0)secVal[i]++;
                 i++;
             }else if((row==0)&&(col==3)){
-                if(sector[!i][row][col-1]<0)secVal[i]++;
-                if(sector[!i][row+1][col-1]<0)secVal[i]++;
-                if(sector[!i][row+1][col]<0)secVal[i]++;
+                if(sector[row][col-1]<0)secVal[i]++;
+                if(sector[row+1][col-1]<0)secVal[i]++;
+                if(sector[row+1][col]<0)secVal[i]++;
                 i++;
             }else if((row==3)&&(col==0)){
-                if(sector[!i][row-1][col]<0)secVal[i]++;
-                if(sector[!i][row-1][col+1]<0)secVal[i]++;
-                if(sector[!i][row][col+1]<0)secVal[i]++;
+                if(sector[row-1][col]<0)secVal[i]++;
+                if(sector[row-1][col+1]<0)secVal[i]++;
+                if(sector[row][col+1]<0)secVal[i]++;
                 i++;
             }else if((row==3)&&(col==3)){
-                if(sector[!i][row-1][col-1]<0)secVal[i]++;
-                if(sector[!i][row-1][col]<0)secVal[i]++;
-                if(sector[!i][row][col-1]<0)secVal[i]++;
+                if(sector[row-1][col-1]<0)secVal[i]++;
+                if(sector[row-1][col]<0)secVal[i]++;
+                if(sector[row][col-1]<0)secVal[i]++;
                 i++;
             }       
         } 
-}   
+}       
+
+//    cout<<"-------------------------------------------------"<<endl;
 //    cout<<"Mines around sector 0 = "<<secVal[0]<<endl;
 //    cout<<"Mines around sector 1 = "<<secVal[1]<<endl;
 //    cout<<"Mines around sector 2 = "<<secVal[2]<<endl;
@@ -319,11 +322,15 @@ void convert(char row, char col, int &conv, int &rowInt, int &colInt){
 //******************************************************************************
 //******************************************************************************
 //                   Determines properties of selected sector
-void propSec(int conv, int rowInt, int colInt, int sector[][ROW][COL],char *disp, bool &game){
+void propSec(int conv, int rowInt, int colInt, int sector[ROW][COL],
+             char *disp, bool &game,int mineNum[]){
     
-    if(sector[conv][rowInt][colInt]<0){
+    if(sector[rowInt][colInt]<0){
         *(disp+conv)='X';
         game=false;
+    }else if(sector[rowInt][colInt]>=0){
+        
+        *(disp+conv)=mineNum[conv]+48;
     }
     
     
