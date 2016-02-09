@@ -20,32 +20,54 @@ const int COL=4;
 const int ROW=4;
 
 //Function prototypes
-int fillSect(int [ROW][COL]);
-void screen(char [], char &, char &);
+void menu(char &);
+void switMen(char, bool &, int &,int &);
+int  fillSect(int [ROW][COL],int);
+void screen(char [], char &, char &, int);
+void screen2(char [], char &, char &,bool, int, int, int, int [], int, char &);
 char dispVal(char []);
-int mineVal(int [ROW][COL], int []);
+int  mineVal(int [ROW][COL], int []);
 void convert(char , char , int &, int&, int&);
-void propSec(int , int , int , int [ROW][COL],char *, bool &,int [] );
-void screen2(char [], char &, char &,bool);
+void propSec(int , int , int , int [ROW][COL],char *, bool &,int [], int &,
+             int *);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
     
     
     //Declare variables
-    int  sector[ROW][COL];//array determines sector value
+    int  sector[ROW][COL];    //array determines sector value
     char disp[16];            //array display game screen
     char row;                 //row player input of screen
     char col;                 //column player input of screen
     int  mineNum[16];         //array for counting mines around currenst sector
-    int  conv;                //row col converted to integer
-    int  rowInt,              //row and column converted to integer
-         colInt;
-    bool game=true;          //loop variable that determines when you lose
+    int  conv=0;              //row col converted to integer
+    int  rowInt=0,            //row and column converted to integer
+         colInt=0;
+    bool game=true;           //loop variable that determines when you lose
+    char gameMen;             //character for the menu switch statement 
+    bool loopFn3=true;        //exits menu loop
+    int  mines=4;             //number of mines of field
+    int tick=0;               //counts sectors cleared
+    int cheat[16];              //anti cheat variable
+    int totSec=0;               //total number of sectors to clear
+    char srtOver;                //starts the program over if = Y
     
+    
+    //start game over do while loop
+    do{
+    
+    //game menu display
+        
+    do{
+    menu(gameMen);
+    
+    //game menu switch statement
+    switMen(gameMen,loopFn3, mines,totSec);
+    }while(loopFn3==false);
     
     //Fill sectors using array
-    fillSect(sector);
+    fillSect(sector, mines);
     
     //calculate number of mines around each sector
     mineVal(sector, mineNum);
@@ -55,22 +77,24 @@ int main(int argc, char** argv) {
     
     
     //display first game screen
-    screen(disp, row, col);
+    screen(disp, row, col, mines);
     
     do{
-    //converts row column input to integer for array
+    //converts row/column input to integer for array
     convert(row,col,conv,rowInt,colInt);
     
     //Determines properties of sector chosen
-    propSec(conv,rowInt, colInt,sector,disp,game,mineNum);
+    propSec(conv,rowInt, colInt,sector,disp,game,mineNum,tick,cheat);
     
     
     //display second game screen
-    screen2(disp, row, col, game);
+    screen2(disp, row, col, game, mines, tick, totSec,mineNum, conv, srtOver);
     
     
     }while(game==true);
     
+    //start game over do while loop
+    }while(srtOver=='Y');
     
     
     return 0;
@@ -78,9 +102,76 @@ int main(int argc, char** argv) {
 //******************************************************************************
 //******************************************************************************
 //******************************************************************************
-//                                  Filles Sectors with values
+//                           Game menu Switch Statement
+void switMen(char gameMen, bool &loopFn3,int &mines,int &totSec){
+    //declare variables
+    bool loopFn2=true;   //difficulty switch exit variable
+    char extMenu;        //input to exit menu and continue to game
+    char diff;           //difficulty switch statement character
+    
+    //switch statement
+    switch(gameMen){
+    case 'A':{cout<<"Directions:"<<endl;
+               cout<<"Minesweeper is a game of strategy. ";
+               cout<<"The purpose of the game is to open all the sectors of the";
+               cout<<" board which do not contain a mine. You lose if you set";
+               cout<<" off a mine sector. Every non-mine sector you open will tell";
+               cout<<" you the total number of mines in the neighboring sectors.";
+               cout<<endl;
+               cout<<"Note: Due to the random nature of the game do not get";
+               cout<<" discouraged if your first turn is a mine hit. This may";
+               cout<<" happen several times. First turn has a 25% chance of a mine";
+               cout<<" hit on beginner difficulty.";
+               cout<<endl;
+               cout<<"To continue enter any character."<<endl;
+               cin>>extMenu;loopFn3=false;break;
+    }case 'B':{//switch for game difficulty
+                do{
+                loopFn2=true;
+                cout<<"Select a Difficulty."<<endl;
+                cout<<"For veteran mode(8 mines) input A"<<endl;
+                cout<<"For skilled mode(6 mines) input B"<<endl;
+                cout<<"For Beginner mode(4 mines) input C"<<endl;
+                cin>>diff;
+                diff=toupper(diff);
+                cout<<"________________________________________________"<<endl;
 
-int fillSect(int sector[ROW][COL]){
+                //difficulty switch statement
+                switch(diff){
+                    case 'A':mines=8;loopFn3=true;break;
+                    case 'B':mines=6;loopFn3=true;break;
+                    case 'C':mines=4;loopFn3=true;break;
+                    default:{cout<<"You have input an incorrect value. Try again.";
+                    cout<<endl;
+                    loopFn2=false;
+                }}}while(loopFn2==false);;break;  
+    }case 'C':{cout<<"________________________________________________"<<endl;
+              loopFn3=true;break;}
+    default:{cout<<"You have input an incorrect value. Try again.";
+                    cout<<endl;
+                    loopFn3=false;  
+    }}
+    totSec=16-mines;
+}
+//******************************************************************************
+//******************************************************************************
+//******************************************************************************
+//                           Game menu Display
+void menu(char &gameMen){
+    cout<<"Minesweeper"<<endl;
+    cout<<"___________"<<endl;
+    cout<<"If you would like to see the directions enter A"<<endl;
+    cout<<"If you would like to select difficulty(default Beginner) enter B"<<endl;
+    cout<<"If you just want to play the game enter C"<<endl;
+    cin>>gameMen;
+    gameMen=toupper(gameMen);
+}
+//******************************************************************************
+//******************************************************************************
+//******************************************************************************
+//                           Filles Sectors with values
+
+int fillSect(int sector[ROW][COL], int mines){
     
     //random number seed
     srand(time(0));
@@ -115,13 +206,13 @@ int fillSect(int sector[ROW][COL]){
 //                i++;
         }
     }
-    }while(loopFn1!=4);
+    }while(loopFn1!=mines);
     return 0;
 }
 //******************************************************************************
 //******************************************************************************
 //******************************************************************************
-//                                fill display sector array
+//                       fill display sector array
 char dispVal(char disp[]){
     char row;
     char col;
@@ -136,8 +227,9 @@ return 0;
 //******************************************************************************
 //******************************************************************************
 //******************************************************************************
-//                                 Game Screen
-void screen(char disp[], char &row, char &col ){
+//                            Game Screen
+void screen(char disp[], char &row, char &col, int mines){
+    cout<<"There are "<<mines<<" mines on the field."<<endl;
     cout<<"   A B C D"<<endl;
     cout<<"   --------"<<endl;
     cout<<"A |"<<disp[0]<<"|"<<disp[1]<<"|"<<disp[2]<<"|"<<disp[3]<<"|"<<endl;
@@ -156,7 +248,22 @@ void screen(char disp[], char &row, char &col ){
 //******************************************************************************
 //******************************************************************************
 //                                 Game Screen 2
-void screen2(char disp[], char &row, char &col,bool game ){
+void screen2(char disp[], char &row, char &col,bool game, int mines, int tick,
+             int totSec, int mineNum[], int conv, char &srtOver){
+    cout<<"The last sector you chose = "<<row<<col<<endl;
+    
+    if(game==true&&tick<totSec){
+    cout<<"There are "<<mines<<" mines on the field."<<endl;
+    cout<<"You have cleared "<<tick<<" out of "<<totSec<<" sectors!"<<endl;
+    cout<<"You are surrounded by "<<mineNum[conv]<<" mines!"<<endl;
+    }if(game==true&&tick==totSec){
+        cout<<"YOU CLEARED THE MINE FIELD"<<endl;
+        cout<<"YOU WIN!"<<endl;   
+    }if(game==false){
+        cout<<"YOU HIT A MINE!"<<endl;
+        cout<<"GAME OVER!"<<endl;
+    }
+    
     cout<<"   A B C D"<<endl;
     cout<<"   --------"<<endl;
     cout<<"A |"<<disp[0]<<"|"<<disp[1]<<"|"<<disp[2]<<"|"<<disp[3]<<"|"<<endl;
@@ -166,12 +273,16 @@ void screen2(char disp[], char &row, char &col,bool game ){
     cout<<"________________________________________________"<<endl;
  
     
-    if(game==true){
+    if(game==true&&tick!=totSec){
         cout<<"Input a row then column. Ex) AC"<<endl;
         cin>>row;
         cin>>col;
         row=toupper(row);
         col=toupper(col);
+    }if(game==false||tick==totSec){
+        cout<<"Enter Y to play again!"<<endl;
+        cin>>srtOver;
+        srtOver=toupper(srtOver);
     }
     cout<<"________________________________________________"<<endl;
 }
@@ -286,33 +397,33 @@ void convert(char row, char col, int &conv, int &rowInt, int &colInt){
     if(row=='A'&&col=='A'){
         conv=0; rowInt=0; colInt=0;
     }if(row=='A'&&col=='B'){
-        conv=1; rowInt=1; colInt=1;
+        conv=1; rowInt=0; colInt=1;
     }if(row=='A'&&col=='C'){
-        conv=2; rowInt=2; colInt=2;
+        conv=2; rowInt=0; colInt=2;
     }if(row=='A'&&col=='D'){
-        conv=3; rowInt=3; colInt=3;
+        conv=3; rowInt=0; colInt=3;
     }if(row=='B'&&col=='A'){
-        conv=4; rowInt=0; colInt=0;
+        conv=4; rowInt=1; colInt=0;
     }if(row=='B'&&col=='B'){
         conv=5; rowInt=1; colInt=1;
     }if(row=='B'&&col=='C'){
-        conv=6; rowInt=2; colInt=2;
+        conv=6; rowInt=1; colInt=2;
     }if(row=='B'&&col=='D'){
-        conv=7; rowInt=3; colInt=3;
+        conv=7; rowInt=1; colInt=3;
     }if(row=='C'&&col=='A'){
-        conv=8; rowInt=0; colInt=0;
+        conv=8; rowInt=2; colInt=0;
     }if(row=='C'&&col=='B'){
-        conv=9; rowInt=1; colInt=1;
+        conv=9; rowInt=2; colInt=1;
     }if(row=='C'&&col=='C'){
         conv=10; rowInt=2; colInt=2;
     }if(row=='C'&&col=='D'){
-        conv=11; rowInt=3; colInt=3;
+        conv=11; rowInt=2; colInt=3;
     }if(row=='D'&&col=='A'){
-        conv=12; rowInt=0; colInt=0;
+        conv=12; rowInt=3; colInt=0;
     }if(row=='D'&&col=='B'){
-        conv=13; rowInt=1; colInt=1;
+        conv=13; rowInt=3; colInt=1;
     }if(row=='D'&&col=='C'){
-        conv=14; rowInt=2; colInt=2;
+        conv=14; rowInt=3; colInt=2;
     }if(row=='D'&&col=='D'){
         conv=15; rowInt=3; colInt=3;
     }
@@ -323,14 +434,19 @@ void convert(char row, char col, int &conv, int &rowInt, int &colInt){
 //******************************************************************************
 //                   Determines properties of selected sector
 void propSec(int conv, int rowInt, int colInt, int sector[ROW][COL],
-             char *disp, bool &game,int mineNum[]){
+             char *disp, bool &game,int mineNum[],int &tick, int *cheat){
+    //initialize cheat
+    for(int i=0;i<16;i++)cheat[i]=0;
     
+    //determine properties
     if(sector[rowInt][colInt]<0){
         *(disp+conv)='X';
         game=false;
-    }else if(sector[rowInt][colInt]>=0){
-        
+    }else if((sector[rowInt][colInt]>=0)&&(*(cheat+conv)!=1)){
+        tick++;
         *(disp+conv)=mineNum[conv]+48;
+        *(cheat+conv)=1;
+        game=true;
     }
     
     
