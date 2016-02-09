@@ -35,10 +35,7 @@ int main(int argc, char** argv) {
     char   BA=' ',BB=' ',BC=' ',BD=' ';            //spaced for B row
     char   CA=' ',CB=' ',CC=' ',CD=' ';            //spaced for C row
     char   DA=' ',DB=' ',DC=' ',DD=' ';            //spaced for D row
-    int clickAA=0,clickAB=0,clickAC=0,clickAD=0;//value of each A row
-    int clickBA=0,clickBB=0,clickBC=0,clickBD=0;//value of each B row
-    int clickCA=0,clickCB=0,clickCC=0,clickCD=0;//value of each C row
-    int clickDA=0,clickDB=0,clickDC=0,clickDD=0;//value of each D row
+    int    click[16];                     //determines value of sector
     int sectNum=0;                      //switch statement variable
     char  row;                            //user selected row
     char  col;                            //user selected column
@@ -119,36 +116,13 @@ switch(menu){
 //random number generator deciding mine location
 do{  
   loopFun=0;
-  for(int i=0;i<17;i++){
-    
+  for(int i=0;i<17;i++){ 
+   
     num1=rand()%100-30; 
-    sectNum++;
-    
-            switch(sectNum){
-                case  1:{clickAA=num1;break;
-                }case 2:{clickAB=num1;break;
-                }case 3:{clickAC=num1;break;
-                }case 4:{clickAD=num1;break;
-                }case 5:{clickBA=num1;break;
-                }case 6:{clickBB=num1;break;
-                }case 7:{clickBC=num1;break;
-                }case 8:{clickBD=num1;break;
-                }case 9:{clickCA=num1;break;
-                }case 10:{clickCB=num1;break;
-                }case 11:{clickCC=num1;break;
-                }case 12:{clickCD=num1;break;
-                }case 13:{clickDA=num1;break;
-                }case 14:{clickDB=num1;break;
-                }case 15:{clickDC=num1;break;
-                }case 16:{clickDD=num1;break;  
-                }
-                
-            }   
-    
-  }if(clickAA<0){loopFun++;}if(clickAB<0){loopFun++;}if(clickAC<0){loopFun++;if(clickAD<0)loopFun++;}
-if(clickBA<0){loopFun++;}if(clickBB<0){loopFun++;}if(clickBC<0){loopFun++;}if(clickBD<0){loopFun++;}
-if(clickCA<0){loopFun++;}if(clickCB<0){loopFun++;}if(clickCC<0){loopFun++;}if(clickCD<0){loopFun++;}
-if(clickDA<0){loopFun++;}if(clickDB<0){loopFun++;}if(clickDC<0){loopFun++;}if(clickDD<0){loopFun++;}
+    click[i]=num1;
+
+    if(click[i]<0){loopFun++;}
+  }
 }while(loopFun=!mines);
 
 //game screen do-while loop
@@ -172,10 +146,10 @@ do{
     
 //if statement determining action after selection of row A
     if(row=='A'&&col=='A'){
-        if(clickAA<0){
+        if(click[0]<0){
             AA='X';
             game=false;
-        }if(clickAA>=0&&cheat1!=1){
+        }if(click[0]>=0&&cheat1!=1){
             if(clickAB<0)countAA++;
             if(clickBB<0)countAA++;
             if(clickBA<0)countAA++;
@@ -476,3 +450,9 @@ do{
 
     return 0;
 }
+//******************************************************************************
+//******************************************************************************
+//******************************************************************************
+
+
+sector[][][]
